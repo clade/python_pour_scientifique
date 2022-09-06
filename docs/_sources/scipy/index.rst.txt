@@ -184,7 +184,7 @@ Par exemple l'équation
 
 .. math::
 
-    \frac{d^2y}{dt^2} = \frac{f(y)}{m}$$
+    \frac{d^2y}{dt^2} = \frac{f(y)}{m}
 
 devient 
 
