@@ -157,6 +157,8 @@ Figure avec un inset: distribution de Fermi-Dirac
 Barres d'erreur:
 
 .. plot::
+    :include-source:
+
 
     import numpy as np
     import matplotlib.pyplot as plt
