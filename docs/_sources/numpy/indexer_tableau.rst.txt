@@ -1,0 +1,63 @@
+Indexer un tableau
+------------------
+
+.. jupyter-execute::
+    :hide-code:
+
+    import numpy as np
+
+Comment récupérer une partie d'un tableau (ou modifier une partie d'un tableau). 
+
+Récupérer les indices correspondants à un range:
+
+.. jupyter-execute::
+
+    a = np.random.rand(10)
+
+    print(a)
+    print(a[1])
+    print(a[-2])
+    print(a[1:4])
+    print(a[1:4:2])
+    
+On rappelle que l'on commence toujours à l'indice ``0`` et que un ``range(n1, n2)`` contient ``n2-n1`` éléments (le dernier est donc ``n2-1``). Les indices négatifs sont pris modulo la longueur du tableau (donc ``-2`` est pareil que ``len(a) - 2``. 
+
+
+Il est aussi possible de filtrer des données, par exemple pour récupérer des données selon un critère. 
+
+.. jupyter-execute::
+
+    a = np.arange(4)
+    
+    mask = [False, True, True, False]
+    print(a[mask])
+
+Souvent le mask provient d'un tableau de booléen calculé automatiquement. 
+
+.. jupyter-execute::
+
+    a = np.random.normal(size=10000)
+    mask = (a>=0)
+    
+    print(a[mask].mean()) # Moyenne des tirages positifs
+
+Voici par exemple une façon de calculer la valeur absolue qui est vectorisée:
+
+.. jupyter-execute::
+
+    def valeur_absolue(x):
+        result = np.empty_like(x)
+        result[x<=0] = -x
+        result[x>0] = x
+        return result
+        
+Pour les tableau 2D, on peut récupérer toute la colonne (ou ligne) en mettant simplement un ``:`` :
+
+.. jupyter-execute::
+
+    b = np.random.rand(3, 2)
+    print(b)
+    print(b[1, 0])
+    print(b[:,0]) # première colone
+    print(b[:,1])
+

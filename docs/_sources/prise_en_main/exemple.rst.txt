@@ -1,0 +1,73 @@
+Exemple de code
+===============
+
+Voici un premier exemple de code Python. L'objectif de ce code est de calculer 
+la valeur de :math:`e^x`. Nous allons utiliser le développement limité suivant:
+
+.. math::
+    e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}
+
+Pour cela, nous allons calculer la somme jusqu'à une valeur :math:`n_\mathrm{max}` de :math:`n`
+telle que :math:`x^n/n!<\epsilon`. La variable :math:`\epsilon` déterminera la précision du calcul 
+(plus :math:`\epsilon` est petit, meilleure est la précision). 
+
+Le code Python permettant de faire ce calcul est le suivant : 
+
+.. testcode::
+
+    x = 3.14
+    epsilon = 1E-6
+    resultat = 0
+    n = 1
+    terme = 1 # Valeur initiale de terme de la boucle
+    while terme>epsilon :
+        resultat = resultat + terme
+        terme  = terme * x/n
+        n = n + 1
+    print(resultat)
+
+.. testoutput::
+    :hide:
+
+    23.103865905895475
+
+Ce code ne devrait pas poser de problème au lecteur ayant déjà eu des cours de programmation. Une particularité
+du langage Python est présente : dans la boucle ``while``, le bloc d'instruction qui est répété est déterminé par l'indentation
+(espaces au début de chaque ligne). Python est donc différent de la pluspart des langages qui utilisent une structure
+du type ``begin-end`` ou bien des accolades pour déterminer le bloc d'instruction qui est répété. En python
+un bloc d'instruction est repéré par les ``:``  et un ensemble de lignes indenté identiquement. 
+
+Pour effectuer l'indentation d'une ligne ou d'un bloc de ligne, le plus simple est d'utiliser la touche de tabulation (et shift + tabulation) pour supprimer l'indentation.
+
+.. exercice::
+
+    Essayez d'exécuter ce code en utilisant les différentes méthodes proposées ci dessus :
+
+    * En recopiant le script dans un fichier ``exponentielle.py`` et en l'exécutant avec la commande ``python exponentielle.py``
+
+    * En utilisant ipython
+
+    * En utilisant spyder
+
+    * En utilisant un notebook jupyter. 
+
+Pour créer une fonction, on utilise l'instruction ``def``, ce qui donne : 
+
+
+.. testcode::
+
+    def exp(x, epsilon=1e-6): # epsilon vaut par défaut 1e-6
+        """ Renvoie e a la puissance x """
+        resultat = 0
+        n = 1
+        terme = 1 # Valeur initiale du terme de la boucle
+        while terme>epsilon : 
+            resultat = resultat + terme
+            terme = terme * x/n
+            n = n + 1
+        return resultat
+
+.. exercice::
+
+    Depuis un éditeur (par exemple spyder), modifiez le fichier pour en faire une fonction. Exécutez le fichier et la fonction. 
+

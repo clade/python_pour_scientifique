@@ -1,0 +1,19 @@
+.. Python pour scientifique documentation master file, created by
+   sphinx-quickstart on Tue Aug 23 14:54:48 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Python pour scientifique
+========================
+
+.. toctree::
+   :maxdepth: 2
+   :numbered:
+
+   prise_en_main/prise_en_main
+   bases/index
+   numpy/index
+   graphiques/index
+   scipy/index
+
+

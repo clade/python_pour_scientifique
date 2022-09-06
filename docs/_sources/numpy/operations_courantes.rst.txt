@@ -1,0 +1,65 @@
+Quelques opérations courantes
+-----------------------------
+
+.. jupyter-execute::
+    :hide-code:
+
+    import numpy as np
+
+
+Il existe beaucoup de fonction numpy permettant de faire simplement des opérations sur les tableaux : 
+
+Voici quelques exemples. Parfois les fonctions numpy existent sous forme d'une méthode (``objet.method``). 
+
+.. jupyter-execute::
+
+    a = np.random.normal(size=10000)
+    
+    print(np.max(a))
+    print(a.max()) # Sous forme d'une méthode
+
+    np.sum(a)
+    np.mean(a)
+    np.var(a)
+    np.std(a)
+    np.min(a)
+    np.max(a)
+    
+Lorsque l'on a un tableau 2D (ou plus), il est possible d'éxecuter l'opération ligne par ligne (ou colonne par colonne). 
+
+.. jupyter-execute::
+
+    n_eleves = 10
+    n_exams = 4
+    
+    # Tableau 2D avec les notes
+    # Les notes sont aléatoires !
+    notes = np.random.rand(n_eleves, n_exams)*20  
+
+    # On fait la moyenne sur les élèves (axis=0)
+    moyenne_exams = np.mean(notes, axis=0)
+    print('Moyenne de chaque examen')
+    print(moyenne_exams)
+    
+    moyenne_eleves = np.mean(notes, axis=1)
+    print('Moyenne de chaque élève')
+    print(moyenne_eleves)
+
+
+Opération de tri : 
+
+.. jupyter-execute::
+
+    a = np.random.rand(10)
+    b = np.sort(a)
+    print(b)
+    
+Il est parfois utile de connaître l'indice du maximum ou minimum ou de connaître l'ordre du tri. Cela s'obtient avec les fonctions ``argmax``, ``argmin`` ou ``argsort``. 
+
+.. jupyter-execute::
+
+    i_max = moyenne_eleves.argmax()
+    
+    print(f'Le meilleur élève est le numéro {i_max}')
+    
+

@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Calculer avec numpy et scipy &#8212; Documentation Python pour scientifique </title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="prev" title="4. Tracer des graphiques" href="../graphiques/index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="calculer-avec-numpy-et-scipy">
+<h1><span class="section-number">5. </span>Calculer avec numpy et scipy<a class="headerlink" href="#calculer-avec-numpy-et-scipy" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Les librairies numpy et scipy contiennent tous les algorithmes usuels des calculs numériques. Nous allons en voir quelques uns.</p>
+<section id="algebre-lineaire">
+<h2><span class="section-number">5.1. </span>Algèbre linéaire<a class="headerlink" href="#algebre-lineaire" title="Lien permanent vers ce titre">¶</a></h2>
+<p>numpy.linalg et scipy.linalg (plus de fonction dans scipy)</p>
+<ul class="simple">
+<li><p>Matrice : np.matrix (produit matriciel)</p></li>
+<li><p>Inverse de matrice</p></li>
+<li><p>Diagonalisation/valeurs propres/vecteurs propres</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Le produit de deux tableaux np.array n’est pas le produit matriciel. Pour faire le produit matriciel, il faut utiliser l’opérateur “*” et des objets de type <code class="docutils literal notranslate"><span class="pre">np.matrix</span></code> ou utiliser l’opérateur <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> (introduit dans Python 3.5).</p>
+</div>
+<p>Exemple: Calculer les valeurs propres de:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1 &amp; 1 &amp; 0\\
+1 &amp; 0 &amp; 1 \\
+0  &amp; 1 &amp; -1\\
+\end{bmatrix}\end{split}\]</div>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eigh</span> <span class="c1"># Matrice hermicienne</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H</span><span class="nd">@v</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[-1.73205081  0.          1.73205081]
+[[-0.21132487  0.57735027  0.78867513]
+ [ 0.57735027 -0.57735027  0.57735027]
+ [-0.78867513 -0.57735027  0.21132487]]
+[[ 1.11022302e-16 -1.44328993e-15  1.55431223e-15]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tracer les valeurs propres en fonction de <span class="math notranslate nohighlight">\(\delta\)</span> pour <span class="math notranslate nohighlight">\(\Omega=1\)</span> de l’Hamiltonien suivant :</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\delta &amp; \frac\Omega2 &amp; 0\\
+\frac\Omega2 &amp; 0 &amp; \frac\Omega2 \\
+0  &amp; \frac\Omega2 &amp; -\delta\\
+\end{bmatrix}\end{split}\]</div>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">trois_niveaux</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">omega</span><span class="p">):</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[</span><span class="n">delta</span><span class="p">,</span> <span class="n">omega</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">omega</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">omega</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">omega</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">delta</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">all_delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sans_couplage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">trois_niveaux</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="n">all_delta</span><span class="p">])</span>
+<span class="n">avec_couplage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">trois_niveaux</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="n">all_delta</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_delta</span><span class="p">,</span> <span class="n">sans_couplage</span><span class="p">,</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_delta</span><span class="p">,</span> <span class="n">avec_couplage</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcb42f70ca0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fcb42f70d00&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7fcb42f70dc0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/index_1_1.png" src="../_images/index_1_1.png" />
+</div>
+</div>
+</section>
+<section id="optimisation">
+<h2><span class="section-number">5.2. </span>Optimisation<a class="headerlink" href="#optimisation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Trouver le minimum d’une fonction :</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">x_min</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_min</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_min</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;Minimum </span><span class="si">{</span><span class="n">x_min</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -0.321919
+         Iterations: 11
+         Function evaluations: 22
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text([-0.73088379], [-0.32191935], &#39;Minimum -0.731&#39;)
+</pre></div>
+</div>
+<img alt="../_images/index_2_2.png" src="../_images/index_2_2.png" />
+</div>
+</div>
+<p>Effectuer un ajustement des moindre carrés :</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="k">def</span> <span class="nf">fit_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">largeur</span><span class="p">,</span> <span class="n">centre</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">amplitude</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">centre</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">largeur</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="mf">0.07</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/.</span><span class="mi">5</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span>  <span class="o">.</span><span class="mi">05</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+
+<span class="n">x_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Uncomment to see the curve with inital parameters</span>
+<span class="c1">#plot(x_plot, fit_function(x_plot, amplitude=1,</span>
+<span class="c1">#                         largeur=.5,</span>
+<span class="c1">#                         centre=0))</span>
+<span class="n">init_param</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">fit_function</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">init_param</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="n">fit_function</span><span class="p">(</span><span class="n">x_plot</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/index_3_0.png" src="../_images/index_3_0.png" />
+</div>
+</div>
+</section>
+<section id="integration">
+<h2><span class="section-number">5.3. </span>Integration<a class="headerlink" href="#integration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Intégrale : on peut utiliser le fonction <code class="docutils literal notranslate"><span class="pre">quad</span></code></p>
+<p>Exemple : calculer:</p>
+<div class="math notranslate nohighlight">
+\[\int_0^{1} \frac{1}{1+x^2}\mathrm{d} x\]</div>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>0.7853981633974484
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="equations-differentielles">
+<h2><span class="section-number">5.4. </span>Equations différentielles<a class="headerlink" href="#equations-differentielles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On utiliser la fonction <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> (initial value problem). Elle remplace les fonctions <code class="docutils literal notranslate"><span class="pre">ode</span></code> ou <code class="docutils literal notranslate"><span class="pre">odeint</span></code></p>
+<p>Equations du premier ordre:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm{d}y}{\mathrm{d}t} = -\frac{y}{\tau}\]</div>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">tau</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="n">tau</span>
+
+<span class="n">y0</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 0.          0.1148928   1.2638208   3.0610554   4.81700001  6.57646658
+  8.3379803  10.        ]
+[1.         0.9441725  0.53158834 0.21654931 0.09004637 0.03737781
+ 0.01549954 0.00675392]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y&#39;)
+</pre></div>
+</div>
+<img alt="../_images/index_6_1.png" src="../_images/index_6_1.png" />
+</div>
+</div>
+<p>Equations différentielles d’ordre élevé</p>
+<p>L’astuce consiste à augmenter la dimension de $y$ en rajoutant des fonctions intermédiaires qui sont les dérivées de la fonction initiale.</p>
+<p>Par exemple l’équation</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2y}{dt^2} = \frac{f(y)}{m}$$\]</div>
+<p>devient</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac d{dt} \begin{pmatrix}
+y \\
+y ^\prime
+\end{pmatrix} = \begin{pmatrix}
+y ^\prime \\
+f(y)/m
+\end{pmatrix} = F(y, y^\prime)\end{split}\]</div>
+</section>
+<section id="transformee-de-fourrier">
+<h2><span class="section-number">5.5. </span>Transformée de Fourrier<a class="headerlink" href="#transformee-de-fourrier" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le module numpy implément la transformée de Fourier numérique par l’algorithme de FFT. Pour cela, il faut utiliser les fonctions <code class="docutils literal notranslate"><span class="pre">numpy.fft.fft</span></code> et <code class="docutils literal notranslate"><span class="pre">numpy.fft.ifft</span></code> pour avoir la transformée de Fourier inverse. Lorsque l’on effectue un transformée de Fourier, l’axe des fréquences peut être obtenu à l’aide de la fonction <code class="docutils literal notranslate"><span class="pre">numpy.fft.fftfreq</span></code>.</p>
+<p>Voici un exemple de filtre passe bas utilisant la FFT</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">1E-4</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">30000</span>
+<span class="n">fc</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
+
+<span class="n">freq</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="mf">0.1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+
+
+<span class="n">data_tilde</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">data_tilde_filtre</span> <span class="o">=</span> <span class="n">data_tilde</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="mi">1</span><span class="n">J</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">fc</span><span class="p">)</span>
+<span class="n">data_filtre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">data_tilde_filtre</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">data</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">data_filtre</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/index_7_0.png" src="../_images/index_7_0.png" />
+</div>
+</div>
+<p>Souvent on a besoin d’évaluer la densité spectrale de puissance d’un signal. Il est possible pour cela d’utiliser la méthode du periodogramme avec la fonction <code class="docutils literal notranslate"><span class="pre">scipy.signal.periodogram</span></code>.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On reprend le signal ci dessus</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">psd</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">periodogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">periodogram</span><span class="p">(</span><span class="n">data_filtre</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-7</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(1e-07, 0.6333710615164392)
+</pre></div>
+</div>
+<img alt="../_images/index_8_1.png" src="../_images/index_8_1.png" />
+</div>
+</div>
+<p>Il est aussi possible d’utiliser la méthode <code class="docutils literal notranslate"><span class="pre">welch</span></code> qui moyenne des periodogrammes pris sur des durées plus petites.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># On reprend le signal ci dessus</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">psd</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">data_filtre</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-7</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(1e-07, 0.002468045482035912)
+</pre></div>
+</div>
+<img alt="../_images/index_9_1.png" src="../_images/index_9_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Python pour scientifique</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prise_en_main/prise_en_main.html">1. Prise en main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/index.html">2. Les bases de Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numpy/index.html">3. Tableaux numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphiques/index.html">4. Tracer des graphiques</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Calculer avec numpy et scipy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#algebre-lineaire">5.1. Algèbre linéaire</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimisation">5.2. Optimisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration">5.3. Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#equations-differentielles">5.4. Equations différentielles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transformee-de-fourrier">5.5. Transformée de Fourrier</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../graphiques/index.html" title="Chapitre précédent"><span class="section-number">4. </span>Tracer des graphiques</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Pierre Cladé.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/scipy/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

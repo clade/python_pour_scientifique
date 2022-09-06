@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Les bases de Python &#8212; Documentation Python pour scientifique </title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="3. Tableaux numpy" href="../numpy/index.html" />
+    <link rel="prev" title="1.4. Exemple de code" href="../prise_en_main/exemple.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="les-bases-de-python">
+<h1><span class="section-number">2. </span>Les bases de Python<a class="headerlink" href="#les-bases-de-python" title="Lien permanent vers ce titre">¶</a></h1>
+<section id="les-types-de-donnees-en-python">
+<h2><span class="section-number">2.1. </span>Les types de données en Python<a class="headerlink" href="#les-types-de-donnees-en-python" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il s’agit d’une introduction basique sur les types de données offerts par
+python. Cette introduction peut servir d’aide mémoire pour les
+utilisations les plus courantes, sachant que l’aide officiel de python
+est beaucoup plus complète.</p>
+<section id="les-nombres">
+<h3><span class="section-number">2.1.1. </span>Les nombres<a class="headerlink" href="#les-nombres" title="Lien permanent vers ce titre">¶</a></h3>
+<p>C’est le type le plus simple. Il existe trois types de nombre :</p>
+<ul>
+<li><p>Les entiers (type <code class="docutils literal notranslate"><span class="pre">int</span></code>). Par exemple <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">5</span></code>, en binaire <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span>
+<span class="pre">0b1001</span></code>, en hexadécimal <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">0x23</span></code>.</p></li>
+<li><p>Les nombres à virgules flottante (type <code class="docutils literal notranslate"><span class="pre">float</span></code>). Par exemple <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1234.234</span></code> ou <code class="docutils literal notranslate"><span class="pre">a</span>
+<span class="pre">=</span> <span class="pre">6.2E-34</span></code>. Les nombres sont enregistré en <a class="reference external" href="http://fr.wikipedia.org/wiki/IEEE_754">double précision</a> (64
+bits).  La précision relative est de 52 bits, soit environ
+<span class="math notranslate nohighlight">\(10^{-16}\)</span>.:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">==</span> <span class="n">a</span> <span class="o">+</span> <span class="mf">1E-15</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">==</span> <span class="n">a</span> <span class="o">+</span> <span class="mf">1E-16</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</li>
+<li><p>Les nombres complexes (type <code class="docutils literal notranslate"><span class="pre">complex</span></code>). Il sont enregistrés sous la forme de deux
+nombres à virgule flottante. Par exemple <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">3J</span></code>.</p></li>
+</ul>
+<p>Les opérations sur les nombres sont les suivantes :</p>
+<ul class="simple">
+<li><p>somme : <code class="docutils literal notranslate"><span class="pre">+</span></code></p></li>
+<li><p>produit : <code class="docutils literal notranslate"><span class="pre">*</span></code></p></li>
+<li><p>différence ou négation : <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p>division : <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
+<li><p>division entière : <code class="docutils literal notranslate"><span class="pre">//</span></code></p></li>
+<li><p>modulo : <code class="docutils literal notranslate"><span class="pre">%</span></code> (par exemple <code class="docutils literal notranslate"><span class="pre">7%2</span></code>)</p></li>
+<li><p>puissance : <code class="docutils literal notranslate"><span class="pre">**</span></code> (par exemple <code class="docutils literal notranslate"><span class="pre">2**10</span></code>)</p></li>
+</ul>
+<p>Pour les nombres complexes, on peut facilement accéder à la partie réelle et imaginaire de la façon suivante : :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="n">J</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">imag</span>
+<span class="go">3.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">real</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Norme &quot;</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">imag</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">Norme  3.1622776601683795</span>
+</pre></div>
+</div>
+</section>
+<section id="les-booleens-et-comparaison">
+<h3><span class="section-number">2.1.2. </span>Les booléens et comparaison<a class="headerlink" href="#les-booleens-et-comparaison" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il existe deux valeurs : <code class="docutils literal notranslate"><span class="pre">True</span></code> et <code class="docutils literal notranslate"><span class="pre">False</span></code> (attention à la casse). Les opérations sont par ordre de priorité : <code class="docutils literal notranslate"><span class="pre">not</span></code>, <code class="docutils literal notranslate"><span class="pre">and</span></code> et <code class="docutils literal notranslate"><span class="pre">or</span></code>. Les comparaisons se font à l’aide des symboles <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> et <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>. Pour savoir si deux valeurs sont différentes, on utilise <code class="docutils literal notranslate"><span class="pre">!=</span></code>.</p>
+<p>Les opération <code class="docutils literal notranslate"><span class="pre">and</span></code> et <code class="docutils literal notranslate"><span class="pre">or</span></code> effectuent en fait un test conditionnel. L’instruction <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">and</span> <span class="pre">B</span></code> est interprété comme <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">if</span> <span class="pre">not</span> <span class="pre">A</span> <span class="pre">else</span> <span class="pre">A</span></code>, de même <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">or</span> <span class="pre">B</span></code> équivaut à <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">if</span> <span class="pre">A</span> <span class="pre">else</span> <span class="pre">B</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Les symboles <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> et <code class="docutils literal notranslate"><span class="pre">|</span></code> sont des opérateurs binaires. Ils réalisent les opérations and et or sur les entiers bit par bit en binaire (par exemple <code class="docutils literal notranslate"><span class="pre">6</span> <span class="pre">&amp;</span> <span class="pre">5</span></code> donne <code class="docutils literal notranslate"><span class="pre">4</span></code>). Il ne faut pas les utiliser pour les opérations sur des booléens.</p>
+</div>
+</section>
+<section id="les-chaines-de-caracteres-string">
+<h3><span class="section-number">2.1.3. </span>Les chaînes de caractères (string)<a class="headerlink" href="#les-chaines-de-caracteres-string" title="Lien permanent vers ce titre">¶</a></h3>
+<section id="creation-d-une-chaine-de-caracteres">
+<h4><span class="section-number">2.1.3.1. </span>Création d’une chaîne de caractères<a class="headerlink" href="#creation-d-une-chaine-de-caracteres" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Il existe trois façons de créer une chaîne de caractère : avec des
+<code class="docutils literal notranslate"><span class="pre">'</span></code>, des <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> et des <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>. Ces caractères servent à délimiter les
+début et la fin du texte de la chaîne de caractère. Les guillemets
+simples <code class="docutils literal notranslate"><span class="pre">'</span></code> et doubles <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> sont équivalents. On pourra choisir l’un ou
+l’autre. Il sera cependant judicieux, si une chaîne de caractère doit contenir
+un de ces guillemets, d’utiliser l’autre pour le début et la fin de la chaîne.
+Les trois guillemets sont eux utilisés lorsque l’on veut qu’une chaîne
+de caractère soit sur plusieurs lignes.</p>
+<p>Voici quelques exemples :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;Pierre&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Aujourd&#39;hui&quot;</span> <span class="c1">#Rq : s = &#39;Aujourd&#39;hui&#39; ne va pas fonctionner</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Aujourd&#39;hui, le petit enfant a dit:</span>
+<span class="gp">... </span><span class="s2"> &quot;Faisons le clown!&quot; &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="caracteres-speciaux">
+<h4><span class="section-number">2.1.3.2. </span>Caractères spéciaux<a class="headerlink" href="#caracteres-speciaux" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Les <strong>caractères spéciaux</strong> sont les caractères qui ne sont pas affichables et en tant que tel.
+Par exemple, il existe un caractère pour le retour à la ligne. Il est possible
+d’utiliser ce caractère dans une chaîne en utilisant <code class="docutils literal notranslate"><span class="pre">\n</span></code>. L’antislash sert
+ici de caractère d’échappement pour indiquer que l’on va entrer un caractère
+spécial. La lettre <code class="docutils literal notranslate"><span class="pre">n</span></code> indique ici qu’il s’agit d’un retour à la ligne.</p>
+<p>Voici un exemple :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Un</span><span class="se">\n</span><span class="s2">Deux&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">Un</span>
+<span class="go">Deux</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># \n compte pour un caractère</span>
+<span class="go">7</span>
+</pre></div>
+</div>
+<p>L’antislash sert aussi à insérer un guillemet dans une chaîne : <code class="docutils literal notranslate"><span class="pre">'Aujourd\'hui'</span></code>. Si on veut mettre un antislash dans un chaîne, il faut le précéder d’un autre antislash « \def ». Si on ne souhaite pas que Python interprète ces caractères spéciaux, il est possible de précéder la déclaration de la chaîne d’un <code class="docutils literal notranslate"><span class="pre">r</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\theta&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">\theta</span>
+</pre></div>
+</div>
+</section>
+<section id="manipulation-des-chaines-de-caracteres">
+<h4><span class="section-number">2.1.3.3. </span>Manipulation des chaînes de caractères<a class="headerlink" href="#manipulation-des-chaines-de-caracteres" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Tout comme une liste, il est possible d’accéder à chaque caractère d’une chaîne ou à une partie d’une
+chaîne.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Pierre&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;P&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">&#39;ie&#39;</span>
+</pre></div>
+</div>
+<p>La longueur de la chaîne s’obtient avec la fonction <code class="docutils literal notranslate"><span class="pre">len</span></code>. On peut aussi faire une boucle <code class="docutils literal notranslate"><span class="pre">for</span></code> sur chacun des éléments de la chaîne.</p>
+<p>Cependant, il n’est pas possible de modifier une chaîne de caractères (l’opération <code class="docutils literal notranslate"><span class="pre">s[0]='p'</span></code> échoue).</p>
+<p>La <strong>concaténation</strong> est l’opération qui consiste à créer une nouvelle chaîne en
+mettant à la suite deux chaînes de caractères. Elle se fait à l’aide
+du signe <code class="docutils literal notranslate"><span class="pre">+</span></code>. Par exemple :</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="s1">&#39;Un&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="s1">&#39;Deux&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span>
+<span class="go">&#39;UnDeux&#39;</span>
+</pre></div>
+</div>
+<p>Une autre opération est importante, il s’agit du <strong>formatage</strong> d’une chaîne
+de caractère. Cette opération consiste à insérer un élément variable dans
+une chaîne. Elle est souvent utilisée lorsque l’on veut afficher proprement
+un résultat. Voici une exemple :</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heure</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">minute</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Il est </span><span class="si">{0}</span><span class="s2">h</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">heure</span><span class="p">,</span> <span class="n">minute</span><span class="p">)</span>
+<span class="go">&#39;Il est 15h30&#39;</span>
+</pre></div>
+</div>
+<p>Pour insérer un élément ou plusieurs éléments variables
+dans une chaîne de caractère, on crée d’abord cette chaîne en mettant à la
+place des ces éléments une accolade avec un numéro d’ordre <code class="docutils literal notranslate"><span class="pre">{i}</span></code>. En appliquant la
+méthode <code class="docutils literal notranslate"><span class="pre">format</span></code> sur cette chaîne, les accolades seront remplacées par
+le ième argument.</p>
+<p>Il est possible de passer l’argument par nom dans ce cas la clé est le nom de l’argument.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Il est </span><span class="si">{heure}</span><span class="s2">h</span><span class="si">{minute}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">heure</span><span class="o">=</span><span class="n">heure</span><span class="p">,</span> <span class="n">minute</span><span class="o">=</span><span class="n">minute</span><span class="p">)</span>
+<span class="go">&#39;Il est 15h30&#39;</span>
+</pre></div>
+</div>
+<p>Depuis la version 3.6 de Python, il est possible de demander à Python d’utiliser automatiquement les variables locales à l’aide du préfix <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="sa">f</span><span class="s2">&quot;Il est </span><span class="si">{</span><span class="n">heure</span><span class="si">}</span><span class="s2">h</span><span class="si">{</span><span class="n">minute</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="go">&#39;Il est 15h30&#39;</span>
+</pre></div>
+</div>
+<p>Il est aussi possible de demander d’utiliser un attribut d’un objet :</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">J</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Re(z) is </span><span class="si">{</span><span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="go">Re(z) is 1.0</span>
+</pre></div>
+</div>
+<p>En utilisant le formatage de chaîne de caractère, il est possible de spécifier en détail comment ce nombre doit s’afficher. Par exemple, si il s’agit d’un nombre à virgule flottante, combien de décimales faut-il afficher, faut il utiliser la notation scientifique, etc. Pour cela, on rajoute à l’intérieur des accolades un code particulier. Ce code est précédé du signe “:”.</p>
+<p>Voici quelques exemples :</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">{0:.5f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
+<span class="go">&#39;3.14159&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="mf">299792458.</span> <span class="c1"># Vitesse de la lumière en m/s</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;c = </span><span class="si">{0:.3e}</span><span class="s1"> m/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">&#39;c = 2.998e+08 m/s&#39;</span>
+</pre></div>
+</div>
+<p>Le “f” indique que l’on veut une notation a virgule fixe, le “e” une notation scientifique. Le chiffre que l’on indique après le “.” donne le nombre de chiffre après la virgule que l’on souhaite.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>L’aide en ligne de Python fournit d’autres exemples et des détails.</p>
+<p>Il existe aussi une façon plus élémentaire de formater des chaîne de caractères avec Python et qui est obsolète (mais que l’on peut rencontrer). Pour formater le nombre <code class="docutils literal notranslate"><span class="pre">pi</span></code>, cette méthode écrira dans ce cas <code class="docutils literal notranslate"><span class="pre">'%.6f'%pi</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="les-listes-list">
+<h3><span class="section-number">2.1.4. </span>Les listes (list)<a class="headerlink" href="#les-listes-list" title="Lien permanent vers ce titre">¶</a></h3>
+<ul>
+<li><p>On peut créer et remplir une liste de plusieurs manières :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># liste vide</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="go">[3]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="go">[3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.24</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="go">[(3.24+1j), 3, 4]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="c1"># Longueur de la liste</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+</li>
+<li><p>On peut changer un élément de la liste :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">23</span>
+</pre></div>
+</div>
+</li>
+<li><p>On peut créer une nouvelle liste à partir d’une liste à l’aide de la commande <code class="docutils literal notranslate"><span class="pre">list</span></code> :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">==</span><span class="n">m</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</li>
+<li><p>La commande <code class="docutils literal notranslate"><span class="pre">range(n)</span></code> peut être utilisée pour créer la liste
+<code class="docutils literal notranslate"><span class="pre">[0,1,2,</span> <span class="pre">..,</span> <span class="pre">n-2,</span> <span class="pre">n-1]</span></code>. Cette liste commence à <code class="docutils literal notranslate"><span class="pre">0</span></code> et contient
+<code class="docutils literal notranslate"><span class="pre">n</span></code> nombres (elle s’arrête donc à <code class="docutils literal notranslate"><span class="pre">n-1</span></code>).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="go">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</pre></div>
+</div>
+<p>Techniquement, depuis la version 3 de Python, range ne renvoie plus une liste, mais un générateur. Ce générateur produit la suite de chiffre qui est ensuite utilisée par le constructeur de la liste.</p>
+</li>
+<li><p>Une liste peut contenir des éléments de types différents.</p></li>
+<li><p>Souvent on a besoin de créer une liste dans une boucle. Par exemple
+la liste des <code class="docutils literal notranslate"><span class="pre">n</span></code> premiers nombres au carré peut se calculer de la
+façon suivante</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Il existe cependant une façon plus directe de faire, en utilisant
+les <code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">comprehension</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Cette syntaxe se lit directement en français : calcule la liste des i au carré pour i allant de 0 à n. Il est aussi possible de rajouter une condition ( pour i allant de 0 à n si i est pair )</p>
+<blockquote>
+<div><p>l = [i**2 for i in range(n) if i%2==0]</p>
+</div></blockquote>
+</li>
+<li><p>Si on souhaite appliquer une fonction à tous les éléments d’une
+liste pour recréer une liste, il est possible d’utiliser la fonction
+<code class="docutils literal notranslate"><span class="pre">map</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mafonction</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+
+<span class="nb">map</span><span class="p">(</span><span class="n">mafonction</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># [0,0,4,8,16]</span>
+</pre></div>
+</div>
+</li>
+<li><p>On peut parcourir une liste de plusieurs façons</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Pierre&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">elm</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">elm</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">elm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">elm</span><span class="p">,</span> <span class="s2">&quot; est l&#39;element numero &quot;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot; de la liste)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Avec les listes, nous avons donc introduit la structure de contrôle <code class="docutils literal notranslate"><span class="pre">for</span></code>. Celle ci fonctionne sur tout type de séquence (par exemple les chaînes de caractères). Par cette syntaxe, elle est assez différente de ce qui existe dans d’autres langage informatique.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Nous avons vu qu’il était possible de rajouter des éléments dans une liste. Pour cela, nous avons utilisé la syntaxe <code class="docutils literal notranslate"><span class="pre">l.append(elm)</span></code>. Il s’agit ici de programmation orientée objet. Il est utile de savoir reconnaître la syntaxe : la liste est suivi du nom de la fonction que l’on applique (on appelle cette fonction une <em>méthode</em>) avec ses arguments. Ici, donc, <code class="docutils literal notranslate"><span class="pre">append</span></code> rajoute <code class="docutils literal notranslate"><span class="pre">elm</span></code> à la liste <code class="docutils literal notranslate"><span class="pre">l</span></code>.</p>
+<p>Notons de plus, que l’objet <code class="docutils literal notranslate"><span class="pre">l</span></code> est modifié. La variable <code class="docutils literal notranslate"><span class="pre">l</span></code> désigne toujours la même liste, mais cette liste est modifiée (si on ajoute une page à un classeur, il s’agit toujours du même classeur). Ce comportement est différent de celui que nous avons vu dans la paragraphe précédent avec la méthode <code class="docutils literal notranslate"><span class="pre">format</span></code> sur les chaînes de caractères. En effet dans ce cas, on crée un nouvelle chaîne de caractère qui est renvoyé par la méthode - la chaîne initiale n’étant pas modifiée. La méthode <code class="docutils literal notranslate"><span class="pre">append</span></code> appliquée à une liste, modifie la liste, mais ne renvoie rien.</p>
+</div>
+<ul>
+<li><p>Pour trier une liste, on peut soit utiliser la méthode <code class="docutils literal notranslate"><span class="pre">.sort</span></code> qui <em>modifie</em> la liste soit la fonction <code class="docutils literal notranslate"><span class="pre">sorted</span></code> qui renvoie une nouvelle liste triée. Il est possible d’ajouter comme argument optionnel une fonction qui donne l’ordre. Par défaut, python utilise la fonction cmp (ordre croissant pour les nombre et alphabétique pour le chaîne)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pour&#39;</span><span class="p">,</span> <span class="s1">&#39;trier&#39;</span><span class="p">,</span> <span class="s1">&#39;une&#39;</span><span class="p">,</span> <span class="s1">&#39;liste&#39;</span><span class="p">,</span> <span class="s1">&#39;on&#39;</span><span class="p">,</span> <span class="s1">&#39;peut&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="sa">u</span><span class="sd">&quot;&quot;&quot; Ordre alphabétique inversé sans tenir compte</span>
+<span class="sd">    de la casse&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">cmp</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">a</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">compare</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Fonction <code class="docutils literal notranslate"><span class="pre">zip</span></code> : lorsque l’on veut parcourir deux listes en même temps, il est possible d’utiliser la fonction zip qui crée alors une liste de n-uplets à partir de <code class="docutils literal notranslate"><span class="pre">n</span></code> listes. :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">liste_nom</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Martin&#39;</span><span class="p">,</span> <span class="s1">&#39;Lefevre&#39;</span><span class="p">,</span> <span class="s1">&#39;Dubois&#39;</span><span class="p">,</span> <span class="s1">&#39;Durand&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">liste_prenom</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Emma&#39;</span><span class="p">,</span> <span class="s1">&#39;Nathan&#39;</span><span class="p">,</span> <span class="s1">&#39;Lola&#39;</span><span class="p">,</span> <span class="s1">&#39;Lucas&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">nom</span><span class="p">,</span> <span class="n">prenom</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">liste_nom</span><span class="p">,</span> <span class="n">liste_prenom</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">prenom</span><span class="p">,</span> <span class="n">nom</span><span class="p">)</span>
+<span class="go">Emma Martin</span>
+<span class="go">Nathan Lefevre</span>
+<span class="go">Lola Dubois</span>
+<span class="go">Lucas Durand</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="les-n-uplets-tuple">
+<h3><span class="section-number">2.1.5. </span>Les n-uplets (tuple)<a class="headerlink" href="#les-n-uplets-tuple" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les n-uplets sont utilisés lorsque l’on veut regrouper des valeurs ensembles. On utilise
+une liste lorsque l’on a une longue séquence (dont la longueur est
+souvent variable) et un n-uplet pour regrouper quelques éléments. Par
+exemple :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">personne</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Jean&#39;</span><span class="p">,</span> <span class="s1">&#39;Dupont&#39;</span><span class="p">,</span> <span class="s1">&#39;13 juillet 1973&#39;</span><span class="p">,</span> <span class="mi">38</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Nom :&#39;</span><span class="p">,</span><span class="n">personne</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">Nom : Dupont</span>
+</pre></div>
+</div>
+<p>Les n-uplets sont utilisés lorsqu’une fonction renvoie plusieurs éléments :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fonction</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">fonction</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">(16, 64)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">fonction</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="les-dictionnaires-dictionnary">
+<h3><span class="section-number">2.1.6. </span>Les dictionnaires (dictionnary)<a class="headerlink" href="#les-dictionnaires-dictionnary" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Contrairement aux listes ou aux n-uplets qui sont indexés par des
+nombres (<code class="docutils literal notranslate"><span class="pre">l[2]</span></code>), un dictionnaire est indexé par une clé. En
+général, la clé est une chaîne de caractère ou un nombre. On peut
+reprendre l’exemple précédent :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">personne</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Prenom&quot;</span><span class="p">:</span><span class="s2">&quot;Jean&quot;</span><span class="p">,</span> <span class="s2">&quot;Nom&quot;</span><span class="p">:</span><span class="s2">&quot;Dupont&quot;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="s2">&quot;date_naissance&quot;</span><span class="p">:</span><span class="s2">&quot;13 juillet 1973&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">:</span><span class="mi">38</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nom :&quot;</span><span class="p">,</span><span class="n">personne</span><span class="p">[</span><span class="s1">&#39;Nom&#39;</span><span class="p">])</span>
+<span class="go">Nom : Dupont</span>
+</pre></div>
+</div>
+<p>Tout comme pour une liste, on peut ajouter ou enlever des éléments à un dictionnaire :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">personne</span><span class="p">[</span><span class="s1">&#39;telephone&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;02 99 79 24 58&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">personne</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Il est possible de parcourir et accéder à un dictionnaire de plusieurs façons :</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">releve_note</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Jacques&#39;</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;Jean&#39;</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;Pierre&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">}</span>
+
+<span class="go"># Par clef</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">nom</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">releve_note</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La note de </span><span class="si">{0}</span><span class="s1"> est </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span> <span class="n">releve_note</span><span class="p">[</span><span class="n">nom</span><span class="p">]))</span>
+<span class="go">La note de Jacques est 15</span>
+<span class="go">La note de Jean est 16</span>
+<span class="go">La note de Pierre est 14</span>
+
+<span class="go"># Par valeurs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">notes</span> <span class="o">=</span> <span class="n">releve_note</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Moyenne&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">notes</span><span class="p">))</span>
+<span class="go">Moyenne 15.0</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Par clef et valeur</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">cle</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">releve_note</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="o">...</span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La note de </span><span class="si">{0}</span><span class="s1"> est </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cle</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
+<span class="n">La</span> <span class="n">note</span> <span class="n">de</span> <span class="n">Pierre</span> <span class="n">est</span> <span class="mi">14</span>
+<span class="n">La</span> <span class="n">note</span> <span class="n">de</span> <span class="n">Jean</span> <span class="n">est</span> <span class="mi">16</span>
+<span class="n">La</span> <span class="n">note</span> <span class="n">de</span> <span class="n">Jacques</span> <span class="n">est</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>La clé d’un dictionnaire doit être un objet non modifiable, c’est à dire un nombre, une chaîne de caractère ou un tuple contenant uniquement des objets non modifiables.</p>
+</section>
+<section id="les-ensembles-set">
+<h3><span class="section-number">2.1.7. </span>Les ensembles (set)<a class="headerlink" href="#les-ensembles-set" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Utilisé pour représenter un ensemble non-ordonné d’éléments qui sont
+tous différents. Par exemple :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span> <span class="c1"># union</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span> <span class="c1"># intersection</span>
+</pre></div>
+</div>
+<p>Un exemple d’application :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mdp</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39;Entrez un mot de passe contenant </span><span class="se">\</span>
+<span class="gp">... </span><span class="s1">                       au moins un signe de ponctuation&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ponctuation</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s2">&quot;?,.;:!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="p">(</span><span class="n">ponctuation</span> <span class="o">&amp;</span> <span class="n">mdp</span> <span class="o">==</span> <span class="nb">set</span><span class="p">()):</span>
+<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Le mot de passe ne contient pas de signe de ponctuation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Les ensembles sont très pratiques lorsque l’on veut supprimer des doublons.</p>
+<div class="admonition" id="exo-0">
+<p class="admonition-title">Exercice</p>
+<p>Récupérez un texte quelconque en chinois (par exemple <a class="reference external" href="https://www.gutenberg.org/files/24051/24051-0.txt">https://www.gutenberg.org/files/24051/24051-0.txt</a>). Combien d’idéogrammes chinois différents sont utilisés dans ce texte?</p>
+</div>
+</section>
+</section>
+<section id="expressions-en-python">
+<h2><span class="section-number">2.2. </span>Expressions en Python<a class="headerlink" href="#expressions-en-python" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans un langage de programmation, on distingue les expressions des commandes. Les expressions vont être évaluer par l’interpréteur pour renvoyer un objet.</p>
+<p>Nous n’allons pas faire une <a class="reference external" href="https://docs.python.org/3/reference/expressions.html">description exhaustive</a> de toutes les possibilités.</p>
+<ul>
+<li><p>Les parenthèses peuvent avoir plusieurs sens :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># appel d&#39;une fonction</span>
+<span class="go">0.1411200080598672</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="n">J</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span> <span class="c1"># parenthèse logique</span>
+<span class="go">(3+6j)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="n">J</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span> <span class="c1"># n-uplet</span>
+<span class="go">(1, 2j, 1, 2j, 1, 2j)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Nous vous rappelons la syntaxe dite de <em>list comprehension</em> :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="go">[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[0, 0, 1, 2, 2]</span>
+</pre></div>
+</div>
+<p>De même il existe des <em>comprehension</em> pour les dictionnaires et les ensembles :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">}</span> <span class="c1"># ensemble</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">}</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="o">+</span><span class="n">i</span><span class="p">):</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">}</span> <span class="c1"># dictionnaire</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</li>
+<li><p>Il est possible d’utiliser une condition dans une expression sous la forme intuitive <em>renvoie A si B sinon C</em>. Ce type d’expression permet d’éviter de passer par des variables intermédiaires.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="k">else</span> <span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span><span class="n">J</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span> <span class="k">if</span> <span class="n">lang</span><span class="o">==</span><span class="s1">&#39;fr&#39;</span> <span class="k">else</span> <span class="s1">&#39;Hello&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="creer-des-fonctions">
+<h2><span class="section-number">2.3. </span>Créer des fonctions<a class="headerlink" href="#creer-des-fonctions" title="Lien permanent vers ce titre">¶</a></h2>
+<section id="arguments-d-une-fonction">
+<h3><span class="section-number">2.3.1. </span>Arguments d’une fonction<a class="headerlink" href="#arguments-d-une-fonction" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Voici un exemple général de la définition d’une fonction :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwd</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">kwd</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Cette fonction possède deux arguments obligatoires, deux arguments optionnels. Les variables args et kwd vont contenir les arguments supplémentaires (sans et avec mots-clé - keyword).</p>
+<p>Lorsque l’on appelle une fonction, les arguments peuvent être passés anonymement (par ordre) ou avec un nom (<em>keyword argument</em>, <code class="docutils literal notranslate"><span class="pre">nom=valeur</span></code>). Il faut mettre d’abord les arguments anonymes puis les autres. Il n’y a pas de lien entre le fait qu’un argument ait une valeur par défaut et le fait qu’il soit utilisé avec son nom. Lorsque les arguments sont passés avec leur nom, l’ordre est indifférent :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">1 2 4 2</span>
+<span class="go">()</span>
+<span class="go">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span> <span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">2 2 1 2</span>
+<span class="go">()</span>
+<span class="go">{}</span>
+</pre></div>
+</div>
+<p>Les arguments en trop sont envoyés dans args ou kwd :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">1 2 3 4</span>
+<span class="go">(5, 6)</span>
+<span class="go">{}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">1 2 3 2</span>
+<span class="go">()</span>
+<span class="go">{&#39;e&#39;: 4}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">1 2 3 4</span>
+<span class="go">(5, 6)</span>
+<span class="go">{&#39;e&#39;: 7}</span>
+</pre></div>
+</div>
+<p>Enfin, il est possible de séparer un groupe d’arguments à partir d’un itérable (list, tuple, ..) (séparation anonyme) ou à partir d’un dictionnaire (séparation avec mots-clés):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">liste</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dct</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">liste</span><span class="p">,</span> <span class="o">**</span><span class="n">dct</span><span class="p">)</span>
+<span class="gp">... </span><span class="c1"># equivaut à f(0, 1, 2, d=3, e=4)</span>
+<span class="go">0 1 2 3</span>
+<span class="go">()</span>
+<span class="go">{&#39;e&#39;: 4}</span>
+</pre></div>
+</div>
+<p>On remarquera que les variables <code class="docutils literal notranslate"><span class="pre">args</span></code> et <code class="docutils literal notranslate"><span class="pre">kwd</span></code> à l’intérieur de la fonction <code class="docutils literal notranslate"><span class="pre">f</span></code> sont différentes de celles que l’on a séparées (liste et dct dans cet exemple).</p>
+<p>Il est de toute façon possible de séparer plusieurs listes ou dictionnaires :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">0 1 2 0 1 2</span>
+</pre></div>
+</div>
+<p>Quelques remarques :</p>
+<ul>
+<li><p>Il ne faut par hésiter à utiliser des arguments par défaut (et c’est mieux que des variables globales)</p></li>
+<li><p>Lorsque l’on appelle une fonction, il ne faut pas hésiter à nommer les arguments, même si c’est inutile et que c’est plus long à taper. Comparez</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scope</span><span class="o">.</span><span class="n">configure_channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scope</span><span class="o">.</span><span class="n">configure_channel</span><span class="p">(</span><span class="n">channel_name</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">impedance</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="variable-locale-globale">
+<h3><span class="section-number">2.3.2. </span>Variable locale/globale<a class="headerlink" href="#variable-locale-globale" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les variables que l’on crée dans une fonction sont locales, c’est à dire indépendante d’une variable extérieure à la fonction et qui porte le même nom.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>A l’intérieur d’une fonction, une variable est soit locale soit globale (elle ne peut pas changer en cours).</p>
+</section>
+</section>
+<section id="les-boucles">
+<h2><span class="section-number">2.4. </span>Les boucles<a class="headerlink" href="#les-boucles" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il existe des boucle for et des boucle while.</p>
+<p>Pour sortir d’une boucle on peut utiliser l’instruction <code class="docutils literal notranslate"><span class="pre">break</span></code>, pour passer à l’itération suivante l’instruction <code class="docutils literal notranslate"><span class="pre">continue</span></code>. Si une boucle se finit normalement (sans break), il est alors possible d’exécuter un bloc d’instruction dans un <code class="docutils literal notranslate"><span class="pre">else</span></code>. Voici un examole:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">affiche_si_premier</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> n&#39;est pas premier&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+            <span class="k">break</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> est premier&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Remarquons que en Python il est possible de quitter une fonction à n’importe quel moment à l’aide de l’instruction return. Lorsque dans une boucle on connaît le résultat de la fonction, il est alors préférable de quitter celle ci immédiatement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">est_premier</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>On peut parcourir une liste directement, sans passer par les indices :</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">panier</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;carottes&#39;</span><span class="p">,</span> <span class="s1">&#39;courgettes&#39;</span><span class="p">,</span> <span class="s1">&#39;tomates&#39;</span><span class="p">]</span>
+<span class="n">quantite</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">legume</span> <span class="ow">in</span> <span class="n">panier</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">legume</span><span class="p">)</span>
+
+<span class="c1"># Si on souhaite l&#39;indice:</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">legumes</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">panier</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">legume</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Parcourir deux listes en même temps</span>
+<span class="k">for</span> <span class="n">poids</span><span class="p">,</span> <span class="n">legumes</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">quantite</span><span class="p">,</span> <span class="n">panier</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">poids</span><span class="si">}</span><span class="s1">kg de </span><span class="si">{</span><span class="n">legume</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>carottes
+courgettes
+tomates
+0: tomates
+1: tomates
+2: tomates
+1kg de tomates
+3kg de tomates
+2kg de tomates
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Python pour scientifique</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prise_en_main/prise_en_main.html">1. Prise en main</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Les bases de Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#les-types-de-donnees-en-python">2.1. Les types de données en Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expressions-en-python">2.2. Expressions en Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creer-des-fonctions">2.3. Créer des fonctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-boucles">2.4. Les boucles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../numpy/index.html">3. Tableaux numpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphiques/index.html">4. Tracer des graphiques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scipy/index.html">5. Calculer avec numpy et scipy</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../prise_en_main/exemple.html" title="Chapitre précédent"><span class="section-number">1.4. </span>Exemple de code</a></li>
+      <li>Next: <a href="../numpy/index.html" title="Chapitre suivant"><span class="section-number">3. </span>Tableaux numpy</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Pierre Cladé.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/bases/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

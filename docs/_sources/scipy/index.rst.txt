@@ -1,0 +1,269 @@
+Calculer avec numpy et scipy
+============================
+
+Les librairies numpy et scipy contiennent tous les algorithmes usuels des calculs numériques. Nous allons en voir quelques uns.
+
+Algèbre linéaire
+----------------
+
+
+numpy.linalg et scipy.linalg (plus de fonction dans scipy)
+
+* Matrice : np.matrix (produit matriciel)
+* Inverse de matrice
+* Diagonalisation/valeurs propres/vecteurs propres
+
+.. warning::
+
+    Le produit de deux tableaux np.array n'est pas le produit matriciel. Pour faire le produit matriciel, il faut utiliser l'opérateur '*' et des objets de type ``np.matrix`` ou utiliser l'opérateur ``@`` (introduit dans Python 3.5). 
+
+
+Exemple: Calculer les valeurs propres de: 
+
+.. math::
+
+    \begin{bmatrix}
+    1 & 1 & 0\\
+    1 & 0 & 1 \\
+    0  & 1 & -1\\
+    \end{bmatrix}
+    
+.. jupyter-execute::
+
+    import numpy as np
+    from scipy.linalg import eigh # Matrice hermicienne
+
+    H = np.matrix([[1, 1, 0], [1, 0, 1], [0, 1, -1]])
+    
+    w, v = eigh(H)
+    print(w)
+    print(v)
+    print(H@v[:,1])
+
+
+Tracer les valeurs propres en fonction de :math:`\delta` pour :math:`\Omega=1` de l'Hamiltonien suivant :
+
+.. math::
+
+    \begin{bmatrix}
+    \delta & \frac\Omega2 & 0\\
+    \frac\Omega2 & 0 & \frac\Omega2 \\
+    0  & \frac\Omega2 & -\delta\\
+    \end{bmatrix}
+
+.. jupyter-execute::
+
+    import matplotlib.pyplot as plt
+
+    def trois_niveaux(delta, omega):
+        H = np.matrix([[delta, omega/2, 0], [omega/2, 0, omega/2], [0, omega/2, -delta]])
+        return eigh(H)[0]
+        
+    all_delta = np.linspace(-5, 5)
+    sans_couplage = np.array([trois_niveaux(delta, omega=0) for delta in all_delta])
+    avec_couplage = np.array([trois_niveaux(delta, omega=1) for delta in all_delta])
+
+    plt.plot(all_delta, sans_couplage, 'k:')
+    plt.plot(all_delta, avec_couplage, 'k-')
+
+
+Optimisation
+------------ 
+
+Trouver le minimum d'une fonction :
+
+.. jupyter-execute::
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.optimize import fmin
+
+    def f(x):
+        return 0.1*x + x**4 - x**2
+
+    x = np.linspace(-1, 1)
+    plt.plot(x, f(x))
+
+    x_min = fmin(f, -0.75)
+    plt.plot(x_min, f(x_min), 'o')
+    plt.text(x_min, f(x_min), f'Minimum {x_min[0]:.3f}')
+    
+    
+Effectuer un ajustement des moindre carrés : 
+
+.. jupyter-execute::
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.optimize import curve_fit
+
+    def fit_function(x, amplitude, largeur, centre):
+        return amplitude*np.exp(-(x-centre)**2/(2*largeur**2))
+
+    X = np.linspace(-2, 2, 41)
+    data = 1/(1+(X-0.07)**2/.5**2) +  .05*np.random.normal(size=len(X))
+    
+    plt.plot(X, data, 'o')
+
+    x_plot = np.linspace(-2, 2)
+    # Uncomment to see the curve with inital parameters
+    #plot(x_plot, fit_function(x_plot, amplitude=1,
+    #                         largeur=.5, 
+    #                         centre=0))
+    init_param = [1, .5, 0]
+
+    popt, pcov = curve_fit(fit_function, X, data, init_param)
+    plt.plot(x_plot, fit_function(x_plot, *popt))
+    plt.grid()
+
+
+Integration
+-----------
+
+Intégrale : on peut utiliser le fonction ``quad``
+
+Exemple : calculer:
+
+.. math::
+
+    \int_0^{1} \frac{1}{1+x^2}\mathrm{d} x
+
+.. jupyter-execute::
+
+    from scipy.integrate import quad
+
+    def f(x):
+        return 1/(1+x**2)
+
+    res, _ = quad(f, 0, 1)
+    print(res)
+    
+
+Equations différentielles
+-------------------------
+
+On utiliser la fonction ``solve_ivp`` (initial value problem). Elle remplace les fonctions ``ode`` ou ``odeint``
+
+Equations du premier ordre:
+
+.. math::
+
+    \frac{\mathrm{d}y}{\mathrm{d}t} = -\frac{y}{\tau}
+
+
+.. jupyter-execute::
+
+    from scipy.integrate import solve_ivp
+    import numpy as np
+
+    tau = 2
+
+    def f(t, y):
+        return -y/tau
+
+    y0 = 1
+    res = solve_ivp(f, t_span=[0, 10], y0=[1])
+    print(res.t)
+    print(res.y[0,:])
+
+.. jupyter-execute::
+
+    res = solve_ivp(f, t_span=[0, 10], y0=[1], t_eval=np.linspace(0, 10))
+
+    plt.plot(res.t, res.y[0,:])
+    plt.grid()
+    plt.xlabel('t')
+    plt.ylabel('y')
+    
+    
+Equations différentielles d'ordre élevé
+
+L'astuce consiste à augmenter la dimension de $y$ en rajoutant des fonctions intermédiaires qui sont les dérivées de la fonction initiale.
+
+Par exemple l'équation 
+
+.. math::
+
+    \frac{d^2y}{dt^2} = \frac{f(y)}{m}$$
+
+devient 
+
+.. math::
+
+    \frac d{dt} \begin{pmatrix}
+    y \\ 
+    y ^\prime
+    \end{pmatrix} = \begin{pmatrix}
+    y ^\prime \\
+    f(y)/m
+    \end{pmatrix} = F(y, y^\prime)
+
+
+
+Transformée de Fourrier
+-----------------------
+
+
+Le module numpy implément la transformée de Fourier numérique par l'algorithme de FFT. Pour cela, il faut utiliser les fonctions ``numpy.fft.fft`` et ``numpy.fft.ifft`` pour avoir la transformée de Fourier inverse. Lorsque l'on effectue un transformée de Fourier, l'axe des fréquences peut être obtenu à l'aide de la fonction ``numpy.fft.fftfreq``. 
+
+Voici un exemple de filtre passe bas utilisant la FFT 
+
+.. jupyter-execute::
+
+    import numpy as np
+
+    dt = 1E-4
+    N = 30000
+    fc = 200
+    t = np.arange(N)*dt
+
+    freq = 100
+    data = np.sin(2*np.pi*freq*t)*0.1 + np.random.normal(size=N)
+
+
+    data_tilde = np.fft.fft(data)
+    freq = np.fft.fftfreq(N, d=dt)
+    data_tilde_filtre = data_tilde/(1+ 1J*freq/fc)
+    data_filtre = np.real(np.fft.ifft(data_tilde_filtre))
+
+    from matplotlib.pyplot import figure
+
+    fig = figure()
+    ax = fig.subplots(1, 1)
+
+    ax.plot(t[:500], data[:500])
+    ax.plot(t[:500], data_filtre[:500])
+    ax.grid()
+    
+Souvent on a besoin d'évaluer la densité spectrale de puissance d'un signal. Il est possible pour cela d'utiliser la méthode du periodogramme avec la fonction ``scipy.signal.periodogram``. 
+
+.. jupyter-execute::
+
+    # On reprend le signal ci dessus
+    import scipy.signal
+    f, psd = scipy.signal.periodogram(data, fs=1/dt)
+    f, psd_filtre = scipy.signal.periodogram(data_filtre, fs=1/dt)    
+    
+    fig = figure()
+    ax = fig.subplots(1, 1)
+
+    ax.loglog(f, psd)
+    ax.loglog(f, psd_filtre)
+    ax.set_ylim(1E-7, None)
+    
+Il est aussi possible d'utiliser la méthode ``welch`` qui moyenne des periodogrammes pris sur des durées plus petites. 
+
+.. jupyter-execute::
+
+    # On reprend le signal ci dessus
+    import scipy.signal
+    f, psd = scipy.signal.welch(data, fs=1/dt, nperseg=2**12)
+    f, psd_filtre = scipy.signal.welch(data_filtre, fs=1/dt, nperseg=2**12)    
+    
+    fig = figure()
+    ax = fig.subplots(1, 1)
+
+    ax.loglog(f, psd)
+    ax.loglog(f, psd_filtre)
+    ax.set_ylim(1E-7, None)
+

@@ -1,0 +1,164 @@
+Création d'un tableau
+---------------------
+
+.. jupyter-execute::
+    :hide-code:
+
+    import numpy as np
+
+
+Il existe plusieurs fonctions pour créer un tableau.
+
+* Création d'un tableau à partir d'une liste : 
+
+  .. jupyter-execute::
+  
+      a = np.array([1, 2, 4])
+      print(a.dtype) 
+
+      # data type is calculated automatically
+      a = np.array([1.2, 2, 4])
+      print(a.dtype) # all numbers are float 
+
+      # data type can be forced
+      a = np.array([1, 2, 4], dtype=float)
+      print(a.dtype) 
+
+* Création d'un tableau uniforme
+
+  .. jupyter-execute::
+  
+      N = 10
+      a = np.zeros(N)
+      b = np.ones(N)
+
+
+* Créer un range
+
+  .. jupyter-execute::
+  
+      N = 10
+      a = np.arange(N)
+      print('Valeur calculée', a.sum())
+      print('Valeur théorique', (N*(N+1))/2)
+      
+* Répartition uniforme de points: 
+
+  .. jupyter-execute::
+
+     N = 300
+     x = np.linspace(0, 2*np.pi, num=N)
+     
+  .. warning::
+  
+     La fonction linspace inclus le premier et le dernier points. Dans le cas ci-dessus, la distance entre 2 points est donnée par :math:`2\pi/(N-1)`
+
+  .. jupyter-execute::
+
+     x = np.linspace(0, 1, num=10)
+     print('ATTENTION\n'*5)
+     print(x)
+     x = np.linspace(0, 1, num=10, endpoint=False)
+     print(x)
+     
+* Répartition sur une échelle logarithmique: 
+
+  .. jupyter-execute::
+  
+      x = np.logspace(0, 2)
+      print(x.min())
+      print(x.max())
+
+* Distributions aléatoires:
+
+  .. jupyter-execute::
+  
+      data = np.random.rand(N)
+      data = np.random.randint(10, size=N)
+      data = np.random.normal(loc=.3, scale=2.0, size=N)
+
+  Exemple : On utiliser fait la somme de trois dés, quelle est approximativement la probabilité de trouver 8 ?
+  
+  .. jupyter-execute::
+  
+      M = 100000
+      dice1 = np.random.randint(1, 7, size=M)
+      dice2 = np.random.randint(1, 7, size=M)
+      dice3 = np.random.randint(1, 7, size=M)
+      
+      result = dice1 + dice2 + dice3
+      print(np.mean(result==8))
+
+
+* Lire et écrire dans un fichier:
+
+  Il existe deux type d'enregistrement : l'enregistrement sous forme d'un fichier texte et celui sous forme binaire. Dans un fichier texte, le tableau doit être de dimension un ou deux. Il est écrit ligne par ligne sous forme de nombre décimaux. Dans un fichier binaire, c'est la mémoire de l'ordinateur qui est recopier dans le fichier. Les fichiers textes ont l'avantage d'être lisible par un humain et d'être compatible avec beaucoup de logiciel, cependant l'écriture et surtout la lecture du fichier prend beaucoup de temps. Les fichiers binaire seront beaucoup plus rapide. 
+  
+  Pour enregistrer au format texte : 
+  
+  .. jupyter-execute::
+  
+      filename = 'test.dat'
+      a = np.array([1, 2, 4])
+      np.savetxt(filename, a)
+      with open(filename) as f:
+          print(f.read())
+      # Numbers are converted to float
+
+  .. jupyter-execute::
+        :hide-code:
+        
+        import os
+        os.remove(filename) 
+
+  Il est possible de lire des fichiers au format 'csv' tels que ceux exportés par un tableur. Voici un exemple. 
+
+  .. jupyter-execute::
+
+      # Création du fichier 
+      csv_content = """# Tension; courant
+      1; 2.3
+      2; 4.5
+      3; 7.0"""
+      filename = 'test.csv'
+      with open(filename, 'w') as f:
+          f.write(csv_content)
+    
+      data = np.loadtxt(filename, delimiter=';')
+      print(data[:,1])
+
+  
+  Dans le cas présent, il est aussi possible de lire chaque colonne dans une variable directement :   
+  
+  .. jupyter-execute::
+
+      # Utilisation de l'argument unpack
+      tension, courant = np.loadtxt(filename, delimiter=';', unpack=True)
+      print(tension/courant)        
+
+
+  .. jupyter-execute::
+        :hide-code:
+        
+        import os
+        os.remove(filename) 
+        
+  Pour les fichiers binaires, on utilise la fonction ``np.load`` et ``np.save``. Le tableau sera strictement identique après relecture.
+  
+  .. jupyter-execute::
+  
+     filename='test.npy'
+     a = np.array([1, 2, 4])
+     np.save(filename, a)
+     new_a = np.load(filename)
+     print(new_a)
+     # a est toujours un tableau d'entier
+ 
+ 
+  .. jupyter-execute::
+        :hide-code:
+        
+        import os
+        os.remove(filename) 
+
+

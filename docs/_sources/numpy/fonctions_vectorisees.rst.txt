@@ -1,0 +1,118 @@
+Fonctions vectorisées
+---------------------
+.. jupyter-execute::
+    :hide-code:
+
+    import numpy as np
+
+
+Les fonctions vectorisées sont des fonctions qui calculent automatiquement sur des tableaux, point par point. La plus part des opérateurs de python fonctionne sur des tableaux. 
+
+* Opérateurs mathématiques. On peut tout utiliser (comme les puissances ou modulos...).
+
+  .. jupyter-execute::
+  
+     def arctan(x, N_max=100):
+          """ Calcule arctan par le développement limité"""
+          n = np.arange(N_max)
+          return np.sum((-1)**n * x**(2*n+1)/(2*n+1))
+          
+     print(arctan(1), np.arctan(1)) 
+
+* Opérateurs logiques:
+
+  .. jupyter-execute::
+  
+     a = np.array([1, 2, 5, 3, 5])
+     b = np.array([0, 2, 3, 7, 5])
+     print(a==b)
+     print(a>b)
+     print( (a>b) | (a<b) ) 
+     print(a!=b)
+     print(~(a==b))
+     print((a>b) & ((a%2)==1)) # nb impaires
+     
+  .. warning::
+  
+     Ça n'a pas de sens d'utiliser les fonctions ``and`` ou ``or``. Rappelons que ce sont des ``if`` implicites. Et dire, par exemple, "Si mon tableau est positif" n'a pas de sens. Seules les phrases du type : "si tous les élements sont positifs" ou "si au moins un élément est positif" ont un sens. C'est ce que le message d'erreur suivant dit : 
+     
+     .. jupyter-execute::
+         :raises:
+         
+         if (a>b):
+            print(a)
+            
+* Fonctions mathématiques: Les fonctions de bases sont dans le module ``numpy``. Les fonctions spéciales peuvent se retrouver dans le module ``scipy.special``
+
+
+  Exemple : calcul de l'`éclairement d'une tache d'Airy <https://fr.wikipedia.org/wiki/Tache_d%27Airy>`_
+
+  .. jupyter-execute::
+  
+      from scipy.special import jv
+      def eclairement_airy(theta, d=1E-4, lamb=632E-9):
+          """ Eclairement d'un disque """
+          x = np.sin(theta)*d/lamb
+          return (2*jv(1, np.pi*x)/(np.pi*x))**2
+          
+      print(eclairement_airy(theta=2E-3))
+      
+      
+* Fonctions définie par l'utilisateur. Il n'y a rien de magique : une fonction sera vectorisée, si sont contenu l'est. 
+
+  .. jupyter-execute::
+  
+    def position(x0, v0, t, g=9.81):
+        """ Calcule la position d'un point après un temps de chute """
+        return x0 + v0*t + g*t**2/2
+        
+    N = 10
+    sigma_x = 100E-6
+    sigma_v = 10E-3
+    t = 100E-3
+    x0 = np.random.normal(sigma_x, size=(N,3))
+    v0 = np.random.normal(sigma_v, size=(N,3))
+    xf = position(x0, v0, t)
+    
+  Par contre, le code suivant va créer une erreur : 
+  
+  .. jupyter-execute::
+    :raises:
+  
+    def valeur_absolue(x):
+        if x>=0:
+            return x
+        else:
+            return -x
+            
+    print(valeur_absolue(-1))
+    print(valeur_absolue(np.array([-1, 1])))
+
+    
+  Si une fonction fonctionne avec des nombres scalaires, il est possible de la vectoriser automatiquement grâce à la fonction ``np.vectorize`` 
+  
+  .. jupyter-execute::
+  
+    valeur_absolue_vec = np.vectorize(valeur_absolue)
+    print(valeur_absolue_vec(np.array([-1, 1])))
+
+  Cette fonction va automatiser la création de la boucle ``for`` pour l'utilisateur. Elle sera lente comparée au fonction vectorisée native de numpy. On peut le voir en utilisant la commande 'magic' de IPython ``%timeit``
+  
+  .. jupyter-execute::
+  
+     x = np.random.normal(size=100000)
+     
+     %timeit -n 10 np.abs(x)    
+     %timeit -n 10 valeur_absolue_vec(x)
+     
+  Il est possible d'utiliser une décorateur pour créer directement une fonction vectorisée : 
+  
+  .. jupyter-execute::
+  
+      @np.vectorize
+      def my_abs(x):
+          if x>=0:
+              return x
+          else:
+              return -x
+

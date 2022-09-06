@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3.4. Quelques opérations courantes &#8212; Documentation Python pour scientifique </title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="4. Tracer des graphiques" href="../graphiques/index.html" />
+    <link rel="prev" title="3.3. Indexer un tableau" href="indexer_tableau.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="quelques-operations-courantes">
+<h1><span class="section-number">3.4. </span>Quelques opérations courantes<a class="headerlink" href="#quelques-operations-courantes" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="jupyter_cell docutils container">
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>Il existe beaucoup de fonction numpy permettant de faire simplement des opérations sur les tableaux :</p>
+<p>Voici quelques exemples. Parfois les fonctions numpy existent sous forme d’une méthode (<code class="docutils literal notranslate"><span class="pre">objet.method</span></code>).</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="c1"># Sous forme d&#39;une méthode</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4.353789017583159
+4.353789017583159
+</pre></div>
+</div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.353789017583159
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lorsque l’on a un tableau 2D (ou plus), il est possible d’éxecuter l’opération ligne par ligne (ou colonne par colonne).</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_eleves</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n_exams</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Tableau 2D avec les notes</span>
+<span class="c1"># Les notes sont aléatoires !</span>
+<span class="n">notes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_eleves</span><span class="p">,</span> <span class="n">n_exams</span><span class="p">)</span><span class="o">*</span><span class="mi">20</span>
+
+<span class="c1"># On fait la moyenne sur les élèves (axis=0)</span>
+<span class="n">moyenne_exams</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Moyenne de chaque examen&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">moyenne_exams</span><span class="p">)</span>
+
+<span class="n">moyenne_eleves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">notes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Moyenne de chaque élève&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">moyenne_eleves</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Moyenne de chaque examen
+[ 9.74007474  6.20466772 11.63538663  9.16231008]
+Moyenne de chaque élève
+[ 9.5904253  10.19208636 10.76220193  3.98960367 12.91996885 10.98477925
+ 11.35602691  7.70899222  8.2370792   6.11493424]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Opération de tri :</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.09988111 0.10430577 0.11666917 0.22954983 0.37585707 0.44779085
+ 0.54412181 0.6406008  0.88235665 0.91988744]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il est parfois utile de connaître l’indice du maximum ou minimum ou de connaître l’ordre du tri. Cela s’obtient avec les fonctions <code class="docutils literal notranslate"><span class="pre">argmax</span></code>, <code class="docutils literal notranslate"><span class="pre">argmin</span></code> ou <code class="docutils literal notranslate"><span class="pre">argsort</span></code>.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i_max</span> <span class="o">=</span> <span class="n">moyenne_eleves</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Le meilleur élève est le numéro </span><span class="si">{</span><span class="n">i_max</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Le meilleur élève est le numéro 4
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Python pour scientifique</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../prise_en_main/prise_en_main.html">1. Prise en main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases/index.html">2. Les bases de Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Tableaux numpy</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="creation_tableau.html">3.1. Création d’un tableau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fonctions_vectorisees.html">3.2. Fonctions vectorisées</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexer_tableau.html">3.3. Indexer un tableau</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.4. Quelques opérations courantes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../graphiques/index.html">4. Tracer des graphiques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scipy/index.html">5. Calculer avec numpy et scipy</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html"><span class="section-number">3. </span>Tableaux numpy</a><ul>
+      <li>Previous: <a href="indexer_tableau.html" title="Chapitre précédent"><span class="section-number">3.3. </span>Indexer un tableau</a></li>
+      <li>Next: <a href="../graphiques/index.html" title="Chapitre suivant"><span class="section-number">4. </span>Tracer des graphiques</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Pierre Cladé.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/numpy/operations_courantes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

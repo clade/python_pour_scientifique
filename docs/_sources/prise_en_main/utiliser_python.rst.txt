@@ -1,0 +1,90 @@
+Utilisation de Python
+=====================
+
+Il existe plusieurs façons d'exécuter un code Python. On peut lancer un interpréteur dans une console, ce qui permet d'exécuter les instructions ligne par ligne. On peut aussi écrire le script dans un ficher que l'on exécute. Enfin, il existe des solutions intermédiaires avec lesquels on utilise à la foi un fichier et une console. 
+
+Console Python
+--------------
+
+La console Python se lance simplement à partir du programme ``python``. Sous windows, on peut ouvrir un terminal depuis le menu ``Anaconda``.
+
+La console Python peut être utilisée comme une simple calculatrice :
+
+.. doctest::
+
+    >>> 1+13
+    14
+
+On peut aussi y entrer des structures plus complexes directement :
+
+.. doctest::
+
+    >>> l = ['alpha', 'beta']
+    >>> for elm in l:
+    ...     print(elm)
+    ... 
+    alpha
+    beta
+
+
+
+Console IPython
+---------------
+
+La console IPython est beaucoup plus pratique à utiliser que la console Python. Elle remplace de fait la console standard. La page <https://ipython.org/ipython-doc/2/interactive/tutorial.html> indique les principales fonctions de IPython. Notons : 
+
+* Une console qui permet d'accéder au commandes précédentes (en utilisant la flèche du haut). Il est possible de limiter la recherche en commençant à taper les premiers caractères de la lignes que l'on veut retrouver
+
+* La complétion automatique à l'aide de la touche de tabulation. 
+
+    .. ipython::
+
+        In [1]: une_variable_dont_le_nom_est_long = 3.2
+
+    On pourra ensuite simplement taper quelques lettres (par exemple ``une_va``) puis la touche de tabulation. Si plusieurs choix sont possibles, ils s'afficheront. Ceci est valable pour les noms de variables (donc aussi pour les fonctions), mais aussi les attributs ou méthodes des objets.  
+
+* Les commandes magiques. Sera utilisé particulièrement la commande ``%run`` qui permet d'exécuter un fichier.
+
+Utilisation d'un fichier
+------------------------
+
+Dès que l'on veut exécuter plus que quelques instructions, il est préférable d'utiliser un fichier. Les fichiers contenant des instructions python ont comme extension ``.py``. Écrivons à l'aide d'un éditeur de texte standard les quelques instructions suivantes :
+
+.. testcode::
+
+    nom = 'Pierre'
+    print('Bonjour', nom, '!')
+
+Ce fichier peut être exécuté directement à partir d'un shell à l'aide de l'instruction ``python nom_de_fichier.py``. Normalement, ce programme devrait afficher :
+
+.. testoutput::
+
+    Bonjour Pierre !
+
+Spyder
+------
+
+Spyder offre un environnement de travail pour Python qui se veut un clone de celui de Matlab. Il est donc adapté à l'utilisation pour les scientifiques. En ouvrant ce programme, on a d'un côté un éditeur de texte et de l'autre une fenêtre d'aide et une console IPython.
+
+Exemple : lancer spyder et ouvrir le fichier créé précédemment. Exécuter le contenu de ce fichier (à partir des menus ou directement avec la touche F5).
+
+
+Jupyter Notebook
+----------------
+
+Le jupyter notebook offre un environnement dans lequel on peut afficher à la foi les instructions (regroupés dans dans des cellules) et les résultats de ces instructions au fur et a mesure de leur exécutions. Il est par exemple possible d'afficher des graphiques. Cet environnement est particulièrement intéressant lorsque l'on veut pouvoir présenter directement des résultats (par exemple pour un TP, ou une simulation). 
+
+Jupyter se présente sous la forme d'un serveur http auquel on accède avec un navigateur web. Sous linux, lancer simplement le notebook à partir d'un terminal à l'aide de la commande 
+
+.. code::
+
+    jupyter notebook
+
+Normalement, le navigateur par défaut devrait s'ouvrir. 
+
+Sous windows, il existe un lien depuis le menu ``anaconda``.
+
+Pour tout ce qui est petit exercices ou traitement de données, nous conseillons fortement d'utiliser des Notebook Jupyter, ceci l'offre l'avantage de présenter le code et les résultats sequentiellement sur une même page que l'on peut alors facilement partager. 
+
+
+

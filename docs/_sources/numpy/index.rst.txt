@@ -1,0 +1,42 @@
+Tableaux numpy
+==============
+
+
+`numpy` est la librairie qui permet de manipuler de larges tableaux de données. Elle offre plusieurs avantages par rapport aux listes : elle est beaucoup plus rapide et surtout permet de faire des calculs sans utiliser de boucles for. Il est indispensable de savoir manipuler correctement les tableaux numpy pour d'une part gagner du temps lors de l'exécution du programme, mais surtout gagner du temps lors de l'écriture du programme. 
+
+Contrairement aux listes, la taille et le type de donnée est fixé à la création d'un tableau numpy, ce qui fait que la mémoire est immédiatement allouée au tableau. 
+
+Voici quelques exemples : 
+
+.. jupyter-execute::
+
+    import numpy as np
+
+    a = np.arange(10)
+    print(a**2)
+    print(np.sin(a))
+
+
+
+.. warning ::
+
+    Le module numpy contient toutes les fonctions mathématiques qui sont dans le module math. Il n'est pas possible d'utiliser une fonction du module math avec numpy. 
+    
+    .. jupyter-execute::
+        :raises:
+        
+        import math
+        math.sin(np.arange(10))
+
+.. toctree::
+   :maxdepth: 2
+
+   creation_tableau
+   fonctions_vectorisees
+   indexer_tableau
+   operations_courantes
+
+              
+
+
+
