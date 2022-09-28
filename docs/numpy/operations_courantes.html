@@ -68,11 +68,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4.353789017583159
-4.353789017583159
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>4.0351219469370365
+4.0351219469370365
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.353789017583159
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>4.0351219469370365
 </pre></div>
 </div>
 </div>
@@ -100,10 +100,10 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Moyenne de chaque examen
-[ 9.74007474  6.20466772 11.63538663  9.16231008]
+[ 9.81395276 11.1400401  10.49420259  9.04915144]
 Moyenne de chaque élève
-[ 9.5904253  10.19208636 10.76220193  3.98960367 12.91996885 10.98477925
- 11.35602691  7.70899222  8.2370792   6.11493424]
+[ 7.79374555 11.47850198 11.67461786  7.40069001  8.65054475  9.93937896
+ 13.09532836  9.81052539 10.24845065 11.15158371]
 </pre></div>
 </div>
 </div>
@@ -118,8 +118,8 @@ Moyenne de chaque élève
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.09988111 0.10430577 0.11666917 0.22954983 0.37585707 0.44779085
- 0.54412181 0.6406008  0.88235665 0.91988744]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[0.01156812 0.08512015 0.2807883  0.3859941  0.41174778 0.45989627
+ 0.55805187 0.66253723 0.7195286  0.72064735]
 </pre></div>
 </div>
 </div>
@@ -134,9 +134,25 @@ Moyenne de chaque élève
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Le meilleur élève est le numéro 4
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Le meilleur élève est le numéro 6
 </pre></div>
 </div>
+</div>
+</div>
+<p>Autres fonctions utiles:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
+<span class="c1"># Différence entre deux éléments</span>
+<span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Marche aléatoire</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 </section>

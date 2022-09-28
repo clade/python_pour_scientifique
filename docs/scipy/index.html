@@ -109,23 +109,19 @@
 <span class="n">avec_couplage</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">trois_niveaux</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">omega</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">delta</span> <span class="ow">in</span> <span class="n">all_delta</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_delta</span><span class="p">,</span> <span class="n">sans_couplage</span><span class="p">,</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_delta</span><span class="p">,</span> <span class="n">avec_couplage</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_delta</span><span class="p">,</span> <span class="n">avec_couplage</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f347c73bcd0&gt;,
- &lt;matplotlib.lines.Line2D at 0x7f347c73bd30&gt;,
- &lt;matplotlib.lines.Line2D at 0x7f347c73bdf0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/index_1_1.png" src="../_images/index_1_1.png" />
+<img alt="../_images/index_1_0.png" src="../_images/index_1_0.png" />
 </div>
 </div>
 </section>
 <section id="optimisation">
 <h2><span class="section-number">5.2. </span>Optimisation<a class="headerlink" href="#optimisation" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Trouver le minimum d’une fonction :</p>
+<section id="minimum-d-une-fonction">
+<h3><span class="section-number">5.2.1. </span>Minimum d’une fonction<a class="headerlink" href="#minimum-d-une-fonction" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -140,7 +136,7 @@
 
 <span class="n">x_min</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.75</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_min</span><span class="p">),</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_min</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;Minimum </span><span class="si">{</span><span class="n">x_min</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_min</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;Minimum </span><span class="si">{</span><span class="n">x_min</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -151,13 +147,12 @@
          Function evaluations: 22
 </pre></div>
 </div>
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text([-0.73088379], [-0.32191935], &#39;Minimum -0.731&#39;)
-</pre></div>
-</div>
-<img alt="../_images/index_2_2.png" src="../_images/index_2_2.png" />
+<img alt="../_images/index_2_1.png" src="../_images/index_2_1.png" />
 </div>
 </div>
-<p>Effectuer un ajustement des moindre carrés :</p>
+</section>
+<section id="ajustement-des-moindre-carres">
+<h3><span class="section-number">5.2.2. </span>Ajustement des moindre carrés<a class="headerlink" href="#ajustement-des-moindre-carres" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -190,9 +185,10 @@
 </div>
 </div>
 </section>
+</section>
 <section id="integration">
-<h2><span class="section-number">5.3. </span>Integration<a class="headerlink" href="#integration" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Intégrale : on peut utiliser le fonction <code class="docutils literal notranslate"><span class="pre">quad</span></code></p>
+<h2><span class="section-number">5.3. </span>Intégration<a class="headerlink" href="#integration" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On peut utiliser la fonction <code class="docutils literal notranslate"><span class="pre">quad</span></code></p>
 <p>Exemple : calculer:</p>
 <div class="math notranslate nohighlight">
 \[\int_0^{1} \frac{1}{1+x^2}\mathrm{d} x\]</div>
@@ -214,11 +210,16 @@
 </div>
 </div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Si on connaît la fonction, il ne faut pas en faire un tableau. La fonction quad calcule automatiquement les points de l’intégrale afin d’atteindre une erreur donnée. De plus, la fonction quad peut intégrer sur des bornes infinies (<code class="docutils literal notranslate"><span class="pre">np.inf</span></code>)</p>
+</div>
 </section>
 <section id="equations-differentielles">
 <h2><span class="section-number">5.4. </span>Equations différentielles<a class="headerlink" href="#equations-differentielles" title="Lien permanent vers ce titre">¶</a></h2>
-<p>On utiliser la fonction <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> (initial value problem). Elle remplace les fonctions <code class="docutils literal notranslate"><span class="pre">ode</span></code> ou <code class="docutils literal notranslate"><span class="pre">odeint</span></code></p>
-<p>Equations du premier ordre:</p>
+<p>On utilise la fonction <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> (initial value problem). Elle remplace les fonctions <code class="docutils literal notranslate"><span class="pre">ode</span></code> ou <code class="docutils literal notranslate"><span class="pre">odeint</span></code></p>
+<section id="equations-du-premier-ordre">
+<h3><span class="section-number">5.4.1. </span>Equations du premier ordre<a class="headerlink" href="#equations-du-premier-ordre" title="Lien permanent vers ce titre">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm{d}y}{\mathrm{d}t} = -\frac{y}{\tau}\]</div>
 <div class="jupyter_cell jupyter_container docutils container">
@@ -232,41 +233,23 @@
     <span class="k">return</span> <span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="n">tau</span>
 
 <span class="n">y0</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">t</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>[ 0.          0.1148928   1.2638208   3.0610554   4.81700001  6.57646658
-  8.3379803  10.        ]
-[1.         0.9441725  0.53158834 0.21654931 0.09004637 0.03737781
- 0.01549954 0.00675392]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="jupyter_cell jupyter_container docutils container">
-<div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;y&#39;)
-</pre></div>
-</div>
-<img alt="../_images/index_6_1.png" src="../_images/index_6_1.png" />
+<img alt="../_images/index_5_0.png" src="../_images/index_5_0.png" />
 </div>
 </div>
-<p>Equations différentielles d’ordre élevé</p>
-<p>L’astuce consiste à augmenter la dimension de $y$ en rajoutant des fonctions intermédiaires qui sont les dérivées de la fonction initiale.</p>
+</section>
+<section id="equations-differentielles-d-ordre-eleve">
+<h3><span class="section-number">5.4.2. </span>Équations différentielles d’ordre élevé<a class="headerlink" href="#equations-differentielles-d-ordre-eleve" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L’astuce consiste à augmenter la dimension de <span class="math notranslate nohighlight">\(y\)</span> en rajoutant des fonctions intermédiaires qui sont les dérivées de la fonction initiale.</p>
 <p>Par exemple l’équation</p>
 <div class="math notranslate nohighlight">
 \[\frac{d^2y}{dt^2} = \frac{f(y)}{m}\]</div>
@@ -279,6 +262,43 @@ y ^\prime
 y ^\prime \\
 f(y)/m
 \end{pmatrix} = F(y, y^\prime)\end{split}\]</div>
+<p>Voici comment résoudre l’équation d’un pendule <span class="math notranslate nohighlight">\(\frac{d^2 \theta}{dt^2} = -sin(\theta)\)</span>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">y</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">Y</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">]</span>
+
+<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">]</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">101</span><span class="p">),</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1E-7</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1E-7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temps&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/index_6_0.png" src="../_images/index_6_0.png" />
+</div>
+</div>
+<p>On peut aussi regarder la solution dans l’espace des phases :</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Vitesse&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/index_7_0.png" src="../_images/index_7_0.png" />
+</div>
+</div>
+</section>
 </section>
 <section id="transformee-de-fourrier">
 <h2><span class="section-number">5.5. </span>Transformée de Fourrier<a class="headerlink" href="#transformee-de-fourrier" title="Lien permanent vers ce titre">¶</a></h2>
@@ -289,17 +309,19 @@ f(y)/m
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">1E-4</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">30000</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50000</span>
 <span class="n">fc</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">dt</span>
 
+<span class="c1"># Simulation d&#39;un signal</span>
 <span class="n">freq</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">freq</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="mf">0.1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span>
 
-
+<span class="c1"># Réalisation d&#39;un filtre dans l&#39;espace de Fourier</span>
 <span class="n">data_tilde</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftfreq</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
-<span class="n">data_tilde_filtre</span> <span class="o">=</span> <span class="n">data_tilde</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="mi">1</span><span class="n">J</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">fc</span><span class="p">)</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="mi">1</span><span class="n">J</span><span class="o">*</span><span class="n">freq</span><span class="o">/</span><span class="n">fc</span><span class="p">)</span> <span class="c1"># Fonction de transfert</span>
+<span class="n">data_tilde_filtre</span> <span class="o">=</span> <span class="n">data_tilde</span><span class="o">*</span><span class="n">H</span>
 <span class="n">data_filtre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">data_tilde_filtre</span><span class="p">))</span>
 
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">figure</span>
@@ -307,14 +329,17 @@ f(y)/m
 <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">data</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">data_filtre</span><span class="p">[:</span><span class="mi">500</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">data</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;signal brut&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">data_filtre</span><span class="p">[:</span><span class="mi">500</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;signal filtré&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temps [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/index_7_0.png" src="../_images/index_7_0.png" />
+<img alt="../_images/index_8_0.png" src="../_images/index_8_0.png" />
 </div>
 </div>
 <p>Souvent on a besoin d’évaluer la densité spectrale de puissance d’un signal. Il est possible pour cela d’utiliser la méthode du periodogramme avec la fonction <code class="docutils literal notranslate"><span class="pre">scipy.signal.periodogram</span></code>.</p>
@@ -328,17 +353,16 @@ f(y)/m
 <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-7</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;signal brut&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;signal filtré&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Periodogramme&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-7</span><span class="p">,</span> <span class="mf">1E-1</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(1e-07, 0.675657503262445)
-</pre></div>
-</div>
-<img alt="../_images/index_8_1.png" src="../_images/index_8_1.png" />
+<img alt="../_images/index_9_0.png" src="../_images/index_9_0.png" />
 </div>
 </div>
 <p>Il est aussi possible d’utiliser la méthode <code class="docutils literal notranslate"><span class="pre">welch</span></code> qui moyenne des periodogrammes pris sur des durées plus petites.</p>
@@ -352,17 +376,16 @@ f(y)/m
 <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-7</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;signal brut&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">psd_filtre</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;signal filtré&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Welch&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-7</span><span class="p">,</span> <span class="mf">1E-2</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>(1e-07, 0.002350116531047719)
-</pre></div>
-</div>
-<img alt="../_images/index_9_1.png" src="../_images/index_9_1.png" />
+<img alt="../_images/index_10_0.png" src="../_images/index_10_0.png" />
 </div>
 </div>
 </section>
@@ -393,7 +416,7 @@ f(y)/m
 <li class="toctree-l1 current"><a class="current reference internal" href="#">5. Calculer avec numpy et scipy</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#algebre-lineaire">5.1. Algèbre linéaire</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#optimisation">5.2. Optimisation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integration">5.3. Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integration">5.3. Intégration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#equations-differentielles">5.4. Equations différentielles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transformee-de-fourrier">5.5. Transformée de Fourrier</a></li>
 </ul>

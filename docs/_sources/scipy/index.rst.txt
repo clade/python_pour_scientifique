@@ -64,13 +64,14 @@ Tracer les valeurs propres en fonction de :math:`\delta` pour :math:`\Omega=1` d
     avec_couplage = np.array([trois_niveaux(delta, omega=1) for delta in all_delta])
 
     plt.plot(all_delta, sans_couplage, 'k:')
-    plt.plot(all_delta, avec_couplage, 'k-')
+    plt.plot(all_delta, avec_couplage, 'k-');
 
 
 Optimisation
 ------------ 
 
-Trouver le minimum d'une fonction :
+Minimum d'une fonction
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. jupyter-execute::
 
@@ -86,10 +87,11 @@ Trouver le minimum d'une fonction :
 
     x_min = fmin(f, -0.75)
     plt.plot(x_min, f(x_min), 'o')
-    plt.text(x_min, f(x_min), f'Minimum {x_min[0]:.3f}')
+    plt.text(x_min, f(x_min), f'Minimum {x_min[0]:.3f}');
     
     
-Effectuer un ajustement des moindre carrés : 
+Ajustement des moindre carrés
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. jupyter-execute::
 
@@ -117,10 +119,10 @@ Effectuer un ajustement des moindre carrés :
     plt.grid()
 
 
-Integration
+Intégration
 -----------
 
-Intégrale : on peut utiliser le fonction ``quad``
+On peut utiliser la fonction ``quad``
 
 Exemple : calculer:
 
@@ -138,13 +140,17 @@ Exemple : calculer:
     res, _ = quad(f, 0, 1)
     print(res)
     
+.. warning::
+
+    Si on connaît la fonction, il ne faut pas en faire un tableau. La fonction quad calcule automatiquement les points de l'intégrale afin d'atteindre une erreur donnée. De plus, la fonction quad peut intégrer sur des bornes infinies (``np.inf``)
 
 Equations différentielles
 -------------------------
 
-On utiliser la fonction ``solve_ivp`` (initial value problem). Elle remplace les fonctions ``ode`` ou ``odeint``
+On utilise la fonction ``solve_ivp`` (initial value problem). Elle remplace les fonctions ``ode`` ou ``odeint``
 
-Equations du premier ordre:
+Equations du premier ordre
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. math::
 
@@ -162,23 +168,18 @@ Equations du premier ordre:
         return -y/tau
 
     y0 = 1
-    res = solve_ivp(f, t_span=[0, 10], y0=[1])
-    print(res.t)
-    print(res.y[0,:])
-
-.. jupyter-execute::
-
     res = solve_ivp(f, t_span=[0, 10], y0=[1], t_eval=np.linspace(0, 10))
 
     plt.plot(res.t, res.y[0,:])
     plt.grid()
     plt.xlabel('t')
-    plt.ylabel('y')
+    plt.ylabel('y');
+        
     
-    
-Equations différentielles d'ordre élevé
+Équations différentielles d'ordre élevé
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-L'astuce consiste à augmenter la dimension de $y$ en rajoutant des fonctions intermédiaires qui sont les dérivées de la fonction initiale.
+L'astuce consiste à augmenter la dimension de :math:`y` en rajoutant des fonctions intermédiaires qui sont les dérivées de la fonction initiale.
 
 Par exemple l'équation 
 
@@ -199,6 +200,32 @@ devient
     \end{pmatrix} = F(y, y^\prime)
 
 
+Voici comment résoudre l'équation d'un pendule :math:`\frac{d^2 \theta}{dt^2} = -sin(\theta)`: 
+
+.. jupyter-execute::
+
+    def f(t, Y):
+        y, v = Y
+        a = -np.sin(y)
+        return [v, a]
+
+    y0 = [1, 1.75]
+
+    res = solve_ivp(f, t_span=[0, 20], y0=y0, t_eval=np.linspace(0, 20, 101), rtol=1E-7, atol=1E-7)
+    
+    plt.plot(res.t, res.y[0])
+    plt.xlabel('Temps')
+    plt.ylabel('Amplitude');
+    
+On peut aussi regarder la solution dans l'espace des phases : 
+
+.. jupyter-execute::
+
+    plt.plot(res.y[0,:], res.y[1,:])
+    plt.grid()
+    plt.xlabel('Amplitude')
+    plt.ylabel('Vitesse');
+    
 
 Transformée de Fourrier
 -----------------------
@@ -213,17 +240,19 @@ Voici un exemple de filtre passe bas utilisant la FFT
     import numpy as np
 
     dt = 1E-4
-    N = 30000
+    N = 50000
     fc = 200
-    t = np.arange(N)*dt
+    t = np.arange(N)*dt 
 
+    # Simulation d'un signal
     freq = 100
     data = np.sin(2*np.pi*freq*t)*0.1 + np.random.normal(size=N)
 
-
+    # Réalisation d'un filtre dans l'espace de Fourier
     data_tilde = np.fft.fft(data)
     freq = np.fft.fftfreq(N, d=dt)
-    data_tilde_filtre = data_tilde/(1+ 1J*freq/fc)
+    H = 1/(1+ 1J*freq/fc) # Fonction de transfert
+    data_tilde_filtre = data_tilde*H
     data_filtre = np.real(np.fft.ifft(data_tilde_filtre))
 
     from matplotlib.pyplot import figure
@@ -231,8 +260,11 @@ Voici un exemple de filtre passe bas utilisant la FFT
     fig = figure()
     ax = fig.subplots(1, 1)
 
-    ax.plot(t[:500], data[:500])
-    ax.plot(t[:500], data_filtre[:500])
+    ax.plot(t[:500], data[:500], label='signal brut')
+    ax.plot(t[:500], data_filtre[:500], label='signal filtré')
+    ax.set_xlabel('Temps [s]')
+    ax.set_ylabel('Amplitude')
+    ax.legend()
     ax.grid()
     
 Souvent on a besoin d'évaluer la densité spectrale de puissance d'un signal. Il est possible pour cela d'utiliser la méthode du periodogramme avec la fonction ``scipy.signal.periodogram``. 
@@ -247,9 +279,11 @@ Souvent on a besoin d'évaluer la densité spectrale de puissance d'un signal. I
     fig = figure()
     ax = fig.subplots(1, 1)
 
-    ax.loglog(f, psd)
-    ax.loglog(f, psd_filtre)
-    ax.set_ylim(1E-7, None)
+    ax.loglog(f, psd, label='signal brut')
+    ax.loglog(f, psd_filtre, label='signal filtré')
+    ax.set_title('Periodogramme')
+    ax.legend()
+    ax.set_ylim(1E-7, 1E-1);
     
 Il est aussi possible d'utiliser la méthode ``welch`` qui moyenne des periodogrammes pris sur des durées plus petites. 
 
@@ -263,7 +297,9 @@ Il est aussi possible d'utiliser la méthode ``welch`` qui moyenne des periodogr
     fig = figure()
     ax = fig.subplots(1, 1)
 
-    ax.loglog(f, psd)
-    ax.loglog(f, psd_filtre)
-    ax.set_ylim(1E-7, None)
+    ax.loglog(f, psd, label='signal brut')
+    ax.loglog(f, psd_filtre, label='signal filtré')
+    ax.set_title('Welch')
+    ax.legend()
+    ax.set_ylim(1E-7, 1E-2);
 

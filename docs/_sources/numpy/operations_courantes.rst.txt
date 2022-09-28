@@ -63,3 +63,20 @@ Il est parfois utile de connaître l'indice du maximum ou minimum ou de connaît
     print(f'Le meilleur élève est le numéro {i_max}')
     
 
+Autres fonctions utiles: 
+
+.. jupyter-execute::
+    
+    N = 1000
+    a = np.random.normal(size=N)    
+    # Différence entre deux éléments
+    np.diff(a) 
+    
+    # Marche aléatoire
+    b = np.cumsum(a)
+    
+    
+    
+    
+    
+

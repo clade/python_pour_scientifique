@@ -122,7 +122,7 @@ Graph avec des légendes : distribution de Fermi-Dirac
     ax.grid()
     ax.legend()
     
-Remarques : pour les chaîne de caractère, il est possible d'utiliser des formules latex en utilisant des ``$``. Il faut alors faire attention aux ``\`` : en effet il est possible qu'ils soient interprété comme des caractères spéciaux (par exemple ``\n`` est une retour à la ligne). Pour éviter ceci, on utilise des chaîne brutes (raw string), préfixées par un ``r``. 
+Remarques : pour les chaînes de caractère, il est possible d'utiliser des formules latex en utilisant des ``$``. Il faut alors faire attention aux ``\`` : en effet il est possible qu'ils soient interprété comme des caractères spéciaux (par exemple ``\n`` est un retour à la ligne). Pour éviter ceci, on utilise des chaîne brutes (raw string), préfixées par un ``r``. 
 
 Figure avec un inset: distribution de Fermi-Dirac
 
